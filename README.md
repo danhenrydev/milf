@@ -1,4 +1,4 @@
-# milf - missing important language features
+#  The "Minimally Implemented Language Features" (MILF) compiler and toolchain
 
 A programming language and toolchain developed for the 6502 processor. 
 
