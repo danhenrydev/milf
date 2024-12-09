@@ -1,0 +1,20 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/clang",
+      "-Wall",
+      "-Wextra",
+      "-g",
+      "-xc",
+      "-std=c99",
+      "-I./include",
+      "-c",
+      "-o",
+      "obj/main.o",
+      "src/main.c"
+    ],
+    "directory": "/Users/daniel/Projects/milf",
+    "file": "/Users/daniel/Projects/milf/src/main.c",
+    "output": "/Users/daniel/Projects/milf/obj/main.o"
+  }
+]
