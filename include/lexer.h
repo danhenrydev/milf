@@ -5,6 +5,14 @@
 #include <stddef.h>
 
 
+/**
+ * @brief Token types used by the lexer
+ *
+ * Enumeration of all possible token types that can be identified by the lexer.
+ * Each token type represents a distinct lexical element in the source code.
+ *
+ * @note TOKEN_END represents the end of input, TOKEN_INVALID represents an invalid token
+ */
 typedef enum {
 
   TOKEN_END = 0,
@@ -32,6 +40,14 @@ typedef enum {
 
 } milf_lexer_token_type_t;
 
+/**
+ * @brief Position tracking structure for the lexer
+ * 
+ * Keeps track of the current row and column position in the source code
+ * being lexed. Used for error reporting and debugging.
+ *
+ * @note Row and column numbers are 1-indexed
+ */
 typedef struct {
 
   int row;
@@ -39,6 +55,17 @@ typedef struct {
   
 } milf_lexer_position_t;
 
+/**
+ * @brief Token structure containing lexical information
+ * 
+ * Represents a single token identified by the lexer, containing the token's
+ * text content, length, type, and position in the source code.
+ *
+ * @field text The string content of the token
+ * @field length The length of the token text in characters
+ * @field type The type classification of the token
+ * @field pos The position of the token in the source code
+ */
 typedef struct {
 
   char *text;
@@ -48,6 +75,18 @@ typedef struct {
 
 } milf_lexer_token_t;
 
+/**
+ * @brief Main lexer structure for tracking lexical analysis state
+ * 
+ * Contains the input content being lexed, cursor position tracking,
+ * and current position information for error reporting.
+ *
+ * @field content The input text content being lexed
+ * @field content_length The total length of the input content
+ * @field cursor Current position in the content being processed
+ * @field pos Current row/column position tracking
+ *
+ */
 typedef struct {
 
   char *content;
@@ -169,6 +208,23 @@ char *milf_lexer_get_token_name(milf_lexer_token_t token);
  */
 bool milf_lexer_token_is_keyword(milf_lexer_token_t token);
 
+/**
+ * @brief Advances the lexer cursor by one character
+ * 
+ * Moves the lexer cursor forward by one character and updates the column
+ * position
+ *
+ * @param lexer Pointer to the lexer instance to advance the cursor for
+ *
+ * @example
+ * milf_lexer_t lexer = {
+ *   .content = "a\nb",
+ *   .cursor = 0,
+ *   .pos = {.row = 1, .col = 1}
+ * };
+ * milf_lexer_seek_cursor(&lexer); // cursor will be at position 1
+ *                                 // pos will be {.row = 1, .col = 2}
+ */
 void milf_lexer_seek_cursor(milf_lexer_t *lexer);
 
 
